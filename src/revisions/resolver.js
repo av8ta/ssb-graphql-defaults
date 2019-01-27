@@ -18,5 +18,15 @@ module.exports = {
         resolve(msgs)
       })
     )
+  }),
+  revisionHeads: (_, {id}, {sbot}) => new Promise((resolve, reject) => {
+    pull(
+      sbot.revisions.heads(id, {meta: true}),
+      pull.collect((err, msgs) => {
+        console.log(msgs)
+        if(err) { reject(err) }
+        resolve(msgs)
+      })
+    )
   })
 }
